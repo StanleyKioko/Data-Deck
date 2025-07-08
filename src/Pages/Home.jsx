@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ReactTyped } from "react-typed";
 
 const Home = () => {
   const [trackingId, setTrackingId] = useState('');
@@ -68,8 +69,11 @@ const Home = () => {
       <div className="bg-gradient-to-r from-blue-800 to-indigo-900 text-white">
         <div className="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-10 md:mb-0">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Global Logistics Solutions for Your Business</h1>
-            <p className="text-xl mb-8">Reliable, efficient, and secure delivery services worldwide</p>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Blobe Logistics Solutions for Your Business</h1>
+            <ReactTyped strings={["Reliable, efficient, and secure delivery services worldwide"]} 
+            typeSpeed={120} 
+            backSpeed={140}
+            loop />
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/services" className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300 transform hover:scale-105">
                 Get a Quote
