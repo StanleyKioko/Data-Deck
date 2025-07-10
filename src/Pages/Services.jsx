@@ -1,5 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import freightServices from '../assets/Freight Services.jpg';
+import warehousing from '../assets/Warehousing.jpg';
+import fleetManagement from '../assets/Fleet Management.jpg';
+import courierServices from '../assets/Courier Services.jpg';
+import  FreightServices from '../assets/Freight Services.jpg';
+import fleet from '../assets/fleet.jpg'
+import ecommerce from '../assets/e-commerce.mp4';
+import eComm from '../assets/e-comm.jpg';
 
 const Services = () => {
   const services = [
@@ -14,7 +22,7 @@ const Services = () => {
         "Proof of delivery",
         "Insurance options available"
       ],
-      icon: "🚚"
+      img: <img src={courierServices} alt="Courier Services" />
     },
     {
       id: 2,
@@ -27,7 +35,11 @@ const Services = () => {
         "Temperature-controlled shipping",
         "Consolidated freight services"
       ],
-      icon: "✈️"
+      img: <img 
+  src={fleet} 
+  alt="fleet" className='hover:scale-105 transition-transform duration-300 rounded-lg'
+/>
+    
     },
     {
       id: 3,
@@ -40,7 +52,7 @@ const Services = () => {
         "Online inventory management",
         "Cross-docking services"
       ],
-      icon: "🏭"
+      img: <img src={warehousing} alt="Warehousing" />
     },
     {
       id: 4,
@@ -53,21 +65,21 @@ const Services = () => {
         "Special handling for fragile items",
         "Residential and business deliveries"
       ],
-      icon: "🏠"
+      img: <img src={fleetManagement} alt="Last-Mile Delivery" />
     },
-    {
-      id: 5,
-      title: "E-commerce Logistics",
-      description: "Integrated logistics solutions designed specifically for online retailers to optimize the fulfillment process.",
-      features: [
-        "Order fulfillment integration",
-        "Multi-channel inventory sync",
-        "Returns management",
-        "Branded packaging options",
-        "Analytics and reporting"
-      ],
-      icon: "🛒"
-    }
+   {
+  id: 5,
+  title: "E-commerce Logistics",
+  description: "Integrated logistics solutions designed specifically for online retailers to optimize the fulfillment process.",
+  features: [
+    "Order fulfillment integration",
+    "Multi-channel inventory sync",
+    "Returns management",
+    "Branded packaging options",
+    "Analytics and reporting"
+  ],
+  img: <img src={eComm} alt="E-commerce Logistics" />
+}
   ];
 
   const pricingTiers = [
@@ -141,7 +153,7 @@ const Services = () => {
               >
                 <div className="md:w-1/2">
                   <div className="bg-blue-100 h-64 rounded-lg flex items-center justify-center">
-                    <span className="text-7xl">{service.icon}</span>
+                    {service.img || service.video} 
                   </div>
                 </div>
                 <div className="md:w-1/2">
@@ -169,57 +181,130 @@ const Services = () => {
       </div>
 
       {/* Pricing Section */}
-      <div className="py-16 bg-gray-50">
+      <div className="mt-16">
+        <h2 className="text-3xl font-bold text-center mb-6">Pricing Plans</h2>
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center text-blue-900">Pricing Plans</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pricingTiers.map((tier, index) => (
-              <div 
-                key={index} 
-                className={`
-                  rounded-lg overflow-hidden
-                  ${tier.featured 
-                    ? 'bg-white border-2 border-blue-500 shadow-xl transform -translate-y-4' 
-                    : 'bg-white border border-gray-200 shadow-lg'
-                  }
-                `}
-              >
-                {tier.featured && (
-                  <div className="bg-blue-500 text-white py-2 px-4 text-center">
-                    <p className="text-sm font-bold">MOST POPULAR</p>
-                  </div>
-                )}
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
-                  <div className="flex items-baseline mb-6">
-                    <span className="text-4xl font-bold">{tier.price}</span>
-                    <span className="text-gray-500 ml-2">{tier.period}</span>
-                  </div>
-                  <ul className="mb-8 space-y-3">
-                    {tier.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <span className="text-green-500 mr-2">✓</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <button 
-                    className={`
-                      w-full py-3 px-6 rounded-lg font-bold transition duration-300
-                      ${tier.featured 
-                        ? 'bg-blue-500 text-white hover:bg-blue-600' 
-                        : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-                      }
-                    `}
-                  >
-                    {tier.cta}
-                  </button>
-                </div>
+          <p className="text-center text-lg text-gray-600 mb-12">
+            Choose the plan that best fits your business needs
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 lg-gap-12">
+            <div className="bg-white p-8 rounded-lg shadow-xl border border-gray-200 hover:shadow-2xl transition-all hover:scale-105 transition-transform duration-300">
+              <h3 className="text-2xl font-bold mb-2 text-center">Basic Plan</h3>
+              <p className="text-gray-600 mb-6 text-center">Ideal for startups and small businesses</p>
+              <p className="text-4xl font-bold mb-6 text-center">$199 <span className="text-lg text-gray-600 font-normal">/ month</span></p>
+              <ul className="mb-6 flex-grow space-y-2">
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Local courier delivery</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Basic tracking</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Email support</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Up to 50 packages monthly</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Basic reporting</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Basic analytics dashboard</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Real-time data visualization</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Customizable reports</span>
+                </li>
+              </ul>
+              <button className="w-full bg-[#00df9a] text-black py-2 rounded-md font-bold hover:bg-opacity-80 transition-all">Get Started
+              </button>
+            </div>
+            <div className='bg-[#fffc5c] p-8 rounded-lg shadow-xl border-2 border-[#00df92] hover:shadow-2xl transition-all transform md:-translate-y-4 hover:scale-105 transition-transform duration-300'>
+              <div className="bg-[#00df92] text-black text-sm font-bold py-1 p-4 rounded-full inline-block mb-2 justify-center">
+                MOST POPULAR
               </div>
-            ))}
-          </div>
-          <div className="text-center mt-10 text-gray-600">
-            <p>Need a custom solution? <Link to="/contact" className="text-blue-600 font-semibold">Contact our sales team</Link></p>
+              <h3 className="text-2xl font-bold mb-2 text-center">Professional Plan</h3>
+              <p className="text-gray-600 mb-6 text-center">Perfect for growing businesses</p>
+              <div className="text-4xl font-bold mb-6 text-center">$399 <span className="text-lg text-gray-600 font-normal">/ month</span></div>
+              <ul className="mb-6 flex-grow space-y-2">
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>All Basic Plan features</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Dedicated account manager</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Priority support</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Up to 200 packages monthly</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Advanced reporting</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Advanced analytics dashboard</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Customizable alerts</span>
+                </li>
+              </ul>
+              <button className="w-full bg-[#00df2a] text-black py-2 rounded font-bold hover:bg-opacity-80 transition-all">Get Started</button>
+            </div>
+            {/* Enterprise Plan */}
+            <div className="bg-white p-8 rounded-lg shadow-xl border-2 border-[#00df92] hover:shadow-2xl transition-all transform md:-translate-y-4 hover:scale-105 transition-transform duration-300">
+              <h3 className="text-2xl font-bold mb-2 text-center">Enterprise Plan</h3>
+              <p className="text-gray-600 mb-6 text-center">Best for large organizations</p>
+              <div className="text-4xl font-bold mb-6 text-center">$799 <span className="text-lg text-gray-600 font-normal">/ month</span></div>
+              <ul className="mb-6 flex-grow space-y-2">
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>All Professional Plan features</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Custom solutions</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>On-site support</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Unlimited packages</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Comprehensive reporting</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Dedicated infrastructure</span>
+                </li>
+                <li className="flex items-center">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>24/7 support</span>
+                </li>
+              </ul>
+              <button className="w-full bg-[#00df9a] text-black py-2 rounded font-bold hover:bg-opacity-80 transition-all">Get Started</button>
+            </div>
           </div>
         </div>
       </div>
@@ -244,5 +329,4 @@ const Services = () => {
     </div>
   );
 };
-
 export default Services;

@@ -7,11 +7,15 @@ import logo3 from '../assets/logo3.jpg';
 import logo4 from '../assets/logo4.jpg';
 import logo5 from '../assets/logo5.jpg';
 import logo6 from '../assets/logo6.jpg';
+import AiChatBot from '../components/AiChatBot';
+import header from '../assets/header.jpg';
+
 
 const Home = () => {
   const [trackingId, setTrackingId] = useState('');
   const [isSliding, setIsSliding] = useState(true);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [showChatbot, setShowChatbot] = useState(false);
   const cardSliderRef = useRef(null);
   
   // Company logos and information
@@ -78,33 +82,6 @@ const Home = () => {
     }
   ];
 
-  const services = [
-    {
-      id: 1,
-      title: "Freight Services",
-      description: "Domestic and international freight solutions for businesses of all sizes",
-      icon: "🚚"
-    },
-    {
-      id: 2,
-      title: "Courier Services",
-      description: "Fast and reliable delivery for documents and small parcels",
-      icon: "📦"
-    },
-    {
-      id: 3,
-      title: "Warehousing",
-      description: "Secure storage solutions with inventory management",
-      icon: "🏭"
-    },
-    {
-      id: 4,
-      title: "Fleet Management",
-      description: "Optimized fleet operations for maximum efficiency",
-      icon: "🚛"
-    }
-  ];
-
   const handleTracking = (e) => {
     e.preventDefault();
     if (trackingId.trim()) {
@@ -141,6 +118,11 @@ const Home = () => {
     }
   };
 
+  // Toggle chatbot visibility
+  const toggleChatbot = () => {
+    setShowChatbot(prev => !prev);
+  };
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -162,11 +144,7 @@ const Home = () => {
             </div>
           </div>
           <div className="md:w-1/2">
-            <img 
-              src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-              alt="Logistics Services" 
-              className="rounded-lg shadow-xl"
-            />
+            <img src={header} alt="Logistics Services" className="rounded-lg shadow-xl" />
           </div>
         </div>
       </div>
@@ -185,7 +163,7 @@ const Home = () => {
             />
             <button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition duration-300"
+              className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition duration-300 hover:scale-105 transform transition-duration-300"
             >
               Track Now
             </button>
@@ -194,23 +172,6 @@ const Home = () => {
       </div>
 
       {/* Services Section */}
-      <div className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service) => (
-              <div key={service.id} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
-                <Link to="/services" className="inline-block mt-4 text-blue-600 hover:text-blue-800 font-semibold">
-                  Learn more →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* Client Logos - Updated with horizontal scrolling cards */}
       <div className="py-16 bg-white">
@@ -333,6 +294,30 @@ const Home = () => {
           </div>
         </div>
       </div>
+      
+      {/* AI Chatbot Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <button 
+          onClick={toggleChatbot}
+          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 flex items-center justify-center"
+        >
+          {showChatbot ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+              <span className="ml-2 hidden md:inline">AI Assistant</span>
+            </>
+          )}
+        </button>
+      </div>
+      
+      {/* AI Chatbot Component */}
+      <AiChatBot isOpen={showChatbot} onClose={() => setShowChatbot(false)} />
     </div>
   );
 };
