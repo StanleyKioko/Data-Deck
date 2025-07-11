@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  // Close the menu when a link is clicked
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <nav className="bg-gray-800 p-4 sticky top-0 z-50">
@@ -27,13 +31,13 @@ const Navbar = () => {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-6">
-          <Link to="/" className="text-white hover:text-green-500">Home</Link>
-          <Link to="/about" className="text-white hover:text-green-500">About Us</Link>
-          <Link to="/services" className="text-white hover:text-green-500">Services</Link>
-          <Link to="/track" className="text-white hover:text-green-500">Track Parcel</Link>
-          <Link to="/dashboard" className="text-white hover:text-green-500">Client Dashboard</Link>
-          <Link to="/careers" className="text-white hover:text-green-500">Careers</Link>
-          <Link to="/contact" className="text-white hover:text-green-500">Contact</Link>
+          <Link to="/" className="text-white hover:text-green-500" onClick={closeMenu}>Home</Link>
+          <Link to="/about" className="text-white hover:text-green-500" onClick={closeMenu}>About Us</Link>
+          <Link to="/services" className="text-white hover:text-green-500" onClick={closeMenu}>Services</Link>
+          <Link to="/track" className="text-white hover:text-green-500" onClick={closeMenu}>Track Parcel</Link>
+          <Link to="/dashboard" className="text-white hover:text-green-500" onClick={closeMenu}>Client Dashboard</Link>
+          <Link to="/careers" className="text-white hover:text-green-500" onClick={closeMenu}>Careers</Link>
+          <Link to="/contact" className="text-white hover:text-green-500" onClick={closeMenu}>Contact</Link>
         </div>
         
         {/* Login/Quote Button */}
@@ -48,14 +52,14 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden mt-3 bg-gray-700 rounded-lg p-4">
           <div className="flex flex-col space-y-3">
-            <Link to="/" className="text-white hover:text-green-500">Home</Link>
-            <Link to="/about" className="text-white hover:text-green-500">About Us</Link>
-            <Link to="/services" className="text-white hover:text-green-500">Services</Link>
-            <Link to="/track" className="text-white hover:text-green-500">Track Parcel</Link>
-            <Link to="/dashboard" className="text-white hover:text-green-500">Client Dashboard</Link>
-            <Link to="/careers" className="text-white hover:text-green-500">Careers</Link>
-            <Link to="/contact" className="text-white hover:text-green-500">Contact</Link>
-            <Link to="/login" className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg text-center">
+            <Link to="/" className="text-white hover:text-green-500" onClick={closeMenu}>Home</Link>
+            <Link to="/about" className="text-white hover:text-green-500" onClick={closeMenu}>About Us</Link>
+            <Link to="/services" className="text-white hover:text-green-500" onClick={closeMenu}>Services</Link>
+            <Link to="/track" className="text-white hover:text-green-500" onClick={closeMenu}>Track Parcel</Link>
+            <Link to="/dashboard" className="text-white hover:text-green-500" onClick={closeMenu}>Client Dashboard</Link>
+            <Link to="/careers" className="text-white hover:text-green-500" onClick={closeMenu}>Careers</Link>
+            <Link to="/contact" className="text-white hover:text-green-500" onClick={closeMenu}>Contact</Link>
+            <Link to="/login" className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg text-center" onClick={closeMenu}>
               Login
             </Link>
           </div>
